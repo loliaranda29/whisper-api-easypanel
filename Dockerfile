@@ -1,19 +1,19 @@
 FROM python:3.10-slim
 
-# Instalar ffmpeg (requerido por whisper)
+# Instala ffmpeg, requerido por Whisper
 RUN apt-get update && apt-get install -y ffmpeg
 
-# Crear carpeta de trabajo
+# Crea el directorio de trabajo
 WORKDIR /app
 
-# Copiar archivos
+# Copia los archivos del proyecto
 COPY . .
 
-# Instalar dependencias
+# Instala dependencias de Python
 RUN pip install --upgrade pip && pip install -r requirements.txt
 
-# Exponer puerto
+# Expone el puerto usado por Flask
 EXPOSE 8000
 
-# Comando de inicio
+# Inicia la app
 CMD ["python", "app.py"]
